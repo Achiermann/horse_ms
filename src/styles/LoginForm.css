@@ -108,3 +108,25 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.login-form-toggle {
+  margin-top: var(--space-4);
+  text-align: center;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+.login-form-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--color-brand);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: var(--space-2);
+  transition: color var(--transition-fast);
+}
+
+.login-form-toggle-btn:hover {
+  color: var(--color-brand-hover);
+  text-decoration: underline;
+}
