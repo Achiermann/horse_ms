@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
-import { createSupabaseServerClient } from '../../../../lib/supabaseServerClient';
+import {
+  createSupabaseServerClient,
+  createSupabaseAdminClient,
+} from '../../../../lib/supabaseServerClient';
 
 export async function POST(request) {
   try {
@@ -41,8 +44,9 @@ export async function POST(request) {
       );
     }
 
-    // Create user profile in user table (horse_ms schema is set in client)
-    const { error: profileError } = await supabase.from('user').insert({
+    // Use admin client to create user profile (bypasses RLS)
+    const adminClient = createSupabaseAdminClient();
+    const { error: profileError } = await adminClient.from('user').insert({
       id: authData.user.id,
       display_name: displayName,
       email: email,
