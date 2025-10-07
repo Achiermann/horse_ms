@@ -41,8 +41,8 @@ export async function POST(request) {
       );
     }
 
-    // Create user profile in horse_ms.user table
-    const { error: profileError } = await supabase.from('horse_ms.user').insert({
+    // Create user profile in user table (horse_ms schema is set in client)
+    const { error: profileError } = await supabase.from('user').insert({
       id: authData.user.id,
       display_name: displayName,
       email: email,
@@ -65,7 +65,7 @@ export async function POST(request) {
 
     // Fetch the complete user profile
     const { data: profile } = await supabase
-      .from('horse_ms.user')
+      .from('user')
       .select('*')
       .eq('id', authData.user.id)
       .single();

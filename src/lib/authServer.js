@@ -12,12 +12,8 @@ export async function getCurrentUser() {
     return null;
   }
 
-  // Fetch additional user profile data from horse_ms.user table
-  const { data: profile } = await supabase
-    .from('horse_ms.user')
-    .select('*')
-    .eq('id', user.id)
-    .single();
+  // Fetch additional user profile data from user table (horse_ms schema is set in client)
+  const { data: profile } = await supabase.from('user').select('*').eq('id', user.id).single();
 
   return {
     id: user.id,

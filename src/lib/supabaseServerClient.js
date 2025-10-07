@@ -8,6 +8,9 @@ export function createSupabaseServerClient() {
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     {
+      db: {
+        schema: 'horse_ms',
+      },
       cookies: {
         getAll() {
           return cookieStore.getAll();
@@ -31,6 +34,9 @@ export function createSupabaseAdminClient() {
     process.env.NEXT_PUBLIC_SUPABASE_URL,
     process.env.SUPABASE_SERVICE_ROLE_KEY,
     {
+      db: {
+        schema: 'horse_ms',
+      },
       cookies: {},
     }
   );

@@ -26,9 +26,9 @@ export async function POST(request) {
       );
     }
 
-    // Fetch user profile
+    // Fetch user profile (horse_ms schema is set in client)
     const { data: profile } = await supabase
-      .from('horse_ms.user')
+      .from('user')
       .select('*')
       .eq('id', data.user.id)
       .single();

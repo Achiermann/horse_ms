@@ -1,5 +1,4 @@
 import { createSupabaseServerClient } from '../../supabaseServerClient';
-import { withSchema } from '../../db';
 
 export class SupabaseEventsAdapter {
   getSupabaseClient() {
@@ -8,7 +7,7 @@ export class SupabaseEventsAdapter {
 
   async findAll({ search, filters = {}, page = 1, pageSize = 20, userId }) {
     const supabase = this.getSupabaseClient();
-    let query = supabase.from(withSchema('events')).select('*', { count: 'exact' });
+    let query = supabase.from('events').select('*', { count: 'exact' });
 
     // Filter by owner
     if (userId) {
@@ -57,11 +56,7 @@ export class SupabaseEventsAdapter {
 
   async findById(id) {
     const supabase = this.getSupabaseClient();
-    const { data, error } = await supabase
-      .from(withSchema('events'))
-      .select('*')
-      .eq('id', id)
-      .single();
+    const { data, error } = await supabase.from('events').select('*').eq('id', id).single();
 
     if (error) {
       if (error.code === 'PGRST116') {
@@ -76,7 +71,7 @@ export class SupabaseEventsAdapter {
   async create(eventData, userId) {
     const supabase = this.getSupabaseClient();
     const { data, error } = await supabase
-      .from(withSchema('events'))
+      .from('events')
       .insert({
         ...eventData,
         owner_id: userId,
@@ -94,7 +89,7 @@ export class SupabaseEventsAdapter {
   async update(id, eventData, userId) {
     const supabase = this.getSupabaseClient();
     const { data, error } = await supabase
-      .from(withSchema('events'))
+      .from('events')
       .update(eventData)
       .eq('id', id)
       .eq('owner_id', userId) // Ensure user owns the event
@@ -110,11 +105,7 @@ export class SupabaseEventsAdapter {
 
   async delete(id, userId) {
     const supabase = this.getSupabaseClient();
-    const { error } = await supabase
-      .from(withSchema('events'))
-      .delete()
-      .eq('id', id)
-      .eq('owner_id', userId); // Ensure user owns the event
+    const { error } = await supabase.from('events').delete().eq('id', id).eq('owner_id', userId); // Ensure user owns the event
 
     if (error) {
       throw error;
@@ -143,7 +134,7 @@ export class SupabaseEventsAdapter {
 
     const supabase = this.getSupabaseClient();
     const { data, error } = await supabase
-      .from(withSchema('events'))
+      .from('events')
       .update({ participants })
       .eq('id', eventId)
       .select()
@@ -169,7 +160,7 @@ export class SupabaseEventsAdapter {
 
     const supabase = this.getSupabaseClient();
     const { data, error } = await supabase
-      .from(withSchema('events'))
+      .from('events')
       .update({ participants })
       .eq('id', eventId)
       .select()
@@ -197,7 +188,7 @@ export class SupabaseEventsAdapter {
 
     const supabase = this.getSupabaseClient();
     const { data, error } = await supabase
-      .from(withSchema('events'))
+      .from('events')
       .update({ participants })
       .eq('id', eventId)
       .select()
