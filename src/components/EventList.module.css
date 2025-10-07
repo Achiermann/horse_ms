@@ -1,0 +1,20 @@
+.event-list {
+  margin-top: var(--space-5);
+}
+
+.event-list-loading {
+  text-align: center;
+  padding: var(--space-7);
+  color: var(--color-text-muted);
+}
+
+.event-list-empty {
+  text-align: center;
+  padding: var(--space-7);
+}
+
+.event-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
