@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "lint": "eslint . --ext .js,.jsx",
+    "lint:fix": "eslint . --ext .js,.jsx --fix",
+    "format": "prettier --write .",
+    "check:format": "prettier --check ."
+  },
+  "lint-staged": {
+    "*.{js,jsx,css,md,json}": ["prettier --write", "eslint --fix"]
+  }
+}
