@@ -1,0 +1,199 @@
+.event-detail {
+  min-height: calc(100vh - 100px);
+  padding: var(--space-6) 0;
+}
+
+.event-detail-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.event-detail-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: var(--color-text-muted);
+}
+
+.event-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-5);
+}
+
+.event-detail-header h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.event-detail-delete {
+  padding: var(--space-2) var(--space-4);
+  background-color: var(--color-danger);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.event-detail-delete:hover {
+  background-color: var(--color-danger-hover);
+}
+
+.event-detail-meta {
+  display: flex;
+  gap: var(--space-5);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+}
+
+.event-detail-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.event-detail-meta-label {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.event-detail-meta-value {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.event-detail-info {
+  padding: var(--space-5);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-5);
+}
+
+.event-detail-info h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--space-3);
+}
+
+.event-detail-info p {
+  line-height: 1.6;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.event-detail-participants {
+  padding: var(--space-5);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+}
+
+.event-detail-participants h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+.event-detail-participate {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.event-detail-comment-input {
+  flex: 1;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.event-detail-comment-input:focus {
+  outline: none;
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-brand-light);
+}
+
+.event-detail-participate-btn {
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-brand);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.event-detail-participate-btn:hover {
+  background-color: var(--color-brand-hover);
+}
+
+.event-detail-update-btn {
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-success);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.event-detail-update-btn:hover {
+  background-color: #15803d;
+}
+
+.event-detail-remove-btn {
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.event-detail-remove-btn:hover {
+  background-color: var(--color-border);
+}
+
+.event-detail-participants-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.event-detail-participant {
+  padding: var(--space-3);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.event-detail-participant-name {
+  font-weight: 500;
+  margin-bottom: var(--space-1);
+}
+
+.event-detail-participant-comment {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
