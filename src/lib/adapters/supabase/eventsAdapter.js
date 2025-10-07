@@ -1,12 +1,12 @@
 import { createSupabaseServerClient } from '../../supabaseServerClient';
 
 export class SupabaseEventsAdapter {
-  getSupabaseClient() {
-    return createSupabaseServerClient();
+  async getSupabaseClient() {
+    return await createSupabaseServerClient();
   }
 
   async findAll({ search, filters = {}, page = 1, pageSize = 20, userId }) {
-    const supabase = this.getSupabaseClient();
+    const supabase = await this.getSupabaseClient();
     let query = supabase.from('events').select('*', { count: 'exact' });
 
     // Filter by owner
@@ -55,7 +55,7 @@ export class SupabaseEventsAdapter {
   }
 
   async findById(id) {
-    const supabase = this.getSupabaseClient();
+    const supabase = await this.getSupabaseClient();
     const { data, error } = await supabase.from('events').select('*').eq('id', id).single();
 
     if (error) {
@@ -69,7 +69,7 @@ export class SupabaseEventsAdapter {
   }
 
   async create(eventData, userId) {
-    const supabase = this.getSupabaseClient();
+    const supabase = await this.getSupabaseClient();
     const { data, error } = await supabase
       .from('events')
       .insert({
@@ -87,7 +87,7 @@ export class SupabaseEventsAdapter {
   }
 
   async update(id, eventData, userId) {
-    const supabase = this.getSupabaseClient();
+    const supabase = await this.getSupabaseClient();
     const { data, error } = await supabase
       .from('events')
       .update(eventData)
@@ -104,7 +104,7 @@ export class SupabaseEventsAdapter {
   }
 
   async delete(id, userId) {
-    const supabase = this.getSupabaseClient();
+    const supabase = await this.getSupabaseClient();
     const { error } = await supabase.from('events').delete().eq('id', id).eq('owner_id', userId); // Ensure user owns the event
 
     if (error) {
@@ -132,7 +132,7 @@ export class SupabaseEventsAdapter {
     // Add participant
     const participants = [...event.participants, participant];
 
-    const supabase = this.getSupabaseClient();
+    const supabase = await this.getSupabaseClient();
     const { data, error } = await supabase
       .from('events')
       .update({ participants })
@@ -158,7 +158,7 @@ export class SupabaseEventsAdapter {
     // Remove participant
     const participants = event.participants.filter((p) => p.userId !== userId);
 
-    const supabase = this.getSupabaseClient();
+    const supabase = await this.getSupabaseClient();
     const { data, error } = await supabase
       .from('events')
       .update({ participants })
@@ -186,7 +186,7 @@ export class SupabaseEventsAdapter {
       p.userId === userId ? { ...p, ...updates } : p
     );
 
-    const supabase = this.getSupabaseClient();
+    const supabase = await this.getSupabaseClient();
     const { data, error } = await supabase
       .from('events')
       .update({ participants })

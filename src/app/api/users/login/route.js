@@ -12,7 +12,7 @@ export async function POST(request) {
       );
     }
 
-    const supabase = createSupabaseServerClient();
+    const supabase = await createSupabaseServerClient();
 
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
@@ -41,8 +41,9 @@ export async function POST(request) {
       },
     });
   } catch (error) {
+    console.error('Login error:', error);
     return NextResponse.json(
-      { error: { code: 'SERVER_ERROR', message: 'Internal server error' } },
+      { error: { code: 'SERVER_ERROR', message: error.message || 'Internal server error' } },
       { status: 500 }
     );
   }
