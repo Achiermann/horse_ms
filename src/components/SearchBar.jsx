@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import useEventsStore from '../app/stores/useEventsStore';
-import s from './SearchBar.module.css';
+import '../styles/SearchBar.css';
 
 export default function SearchBar() {
   // *** VARIABLES ***
@@ -30,16 +30,16 @@ export default function SearchBar() {
   };
 
   return (
-    <div className={s['search-bar']}>
+    <div className="search-bar">
       <input
         type="text"
         value={localSearch}
         onChange={handleChange}
         placeholder="Search events by name or location..."
-        className={s['search-bar-input']}
+        className="search-bar-input"
       />
       {localSearch && (
-        <button onClick={handleClear} className={s['search-bar-clear']} aria-label="Clear search">
+        <button onClick={handleClear} className="search-bar-clear" aria-label="Clear search">
           ×
         </button>
       )}

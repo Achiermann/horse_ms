@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import useUserStore from '../app/stores/useUserStore';
-import s from './Header.module.css';
+import '../styles/Header.css';
 
 export default function Header() {
   // *** VARIABLES ***
@@ -15,20 +15,20 @@ export default function Header() {
   };
 
   return (
-    <header className={s.header}>
-      <div className={s['header-container']}>
-        <Link href="/" className={s['header-logo']}>
+    <header className="header">
+      <div className="header-container">
+        <Link href="/" className="header-logo">
           Horse-MS
         </Link>
 
-        <nav className={s['header-nav']}>
+        <nav className="header-nav">
           {user && (
             <>
-              <span className={s['header-user']}>
+              <span className="header-user">
                 {user.display_name || user.email}
-                {user.isAdmin && <span className={s['header-admin-badge']}>Admin</span>}
+                {user.isAdmin && <span className="header-admin-badge">Admin</span>}
               </span>
-              <button onClick={handleLogout} className={s['header-logout-btn']}>
+              <button onClick={handleLogout} className="header-logout-btn">
                 Logout
               </button>
             </>

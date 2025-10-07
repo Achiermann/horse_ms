@@ -2,7 +2,7 @@
 
 import useEventsStore from '../app/stores/useEventsStore';
 import EventListItem from './EventListItem';
-import s from './EventList.module.css';
+import '../styles/EventList.css';
 
 export default function EventList() {
   // *** VARIABLES ***
@@ -11,18 +11,18 @@ export default function EventList() {
   const events = getSortedEvents();
 
   return (
-    <div className={s['event-list']}>
-      {isLoading && <div className={s['event-list-loading']}>Loading events...</div>}
+    <div className="event-list">
+      {isLoading && <div className="event-list-loading">Loading events...</div>}
 
       {!isLoading && events.length === 0 && (
-        <div className={s['event-list-empty']}>
+        <div className="event-list-empty">
           <p>No events found.</p>
           <p className="text-muted text-small">Try adjusting your search or filters.</p>
         </div>
       )}
 
       {!isLoading && events.length > 0 && (
-        <div className={s['event-list-items']}>
+        <div className="event-list-items">
           {events.map((event) => (
             <EventListItem key={event.id} event={event} />
           ))}

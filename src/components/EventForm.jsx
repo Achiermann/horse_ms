@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import useEventsStore from '../app/stores/useEventsStore';
-import s from './EventForm.module.css';
+import '../styles/EventForm.css';
 
 export default function EventForm({ onClose, initialEvent = null }) {
   // *** VARIABLES ***
@@ -85,18 +85,18 @@ export default function EventForm({ onClose, initialEvent = null }) {
   };
 
   return (
-    <div className={s['event-form-overlay']} onClick={onClose}>
-      <div className={s['event-form']} onClick={(e) => e.stopPropagation()}>
-        <div className={s['event-form-header']}>
+    <div className="event-form-overlay" onClick={onClose}>
+      <div className="event-form" onClick={(e) => e.stopPropagation()}>
+        <div className="event-form-header">
           <h2>{initialEvent ? 'Edit Event' : 'Create New Event'}</h2>
-          <button onClick={onClose} className={s['event-form-close']} aria-label="Close">
+          <button onClick={onClose} className="event-form-close" aria-label="Close">
             ×
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className={s['event-form-body']}>
-          <div className={s['event-form-field']}>
-            <label htmlFor="name" className={s['event-form-label']}>
+        <form onSubmit={handleSubmit} className="event-form-body">
+          <div className="event-form-field">
+            <label htmlFor="name" className="event-form-label">
               Event Name *
             </label>
             <input
@@ -105,13 +105,13 @@ export default function EventForm({ onClose, initialEvent = null }) {
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className={s['event-form-input']}
+              className="event-form-input"
               required
             />
           </div>
 
-          <div className={s['event-form-field']}>
-            <label htmlFor="location" className={s['event-form-label']}>
+          <div className="event-form-field">
+            <label htmlFor="location" className="event-form-label">
               Location *
             </label>
             <input
@@ -120,14 +120,14 @@ export default function EventForm({ onClose, initialEvent = null }) {
               name="location"
               value={formData.location}
               onChange={handleChange}
-              className={s['event-form-input']}
+              className="event-form-input"
               required
             />
           </div>
 
-          <div className={s['event-form-row']}>
-            <div className={s['event-form-field']}>
-              <label htmlFor="date" className={s['event-form-label']}>
+          <div className="event-form-row">
+            <div className="event-form-field">
+              <label htmlFor="date" className="event-form-label">
                 Date *
               </label>
               <input
@@ -136,13 +136,13 @@ export default function EventForm({ onClose, initialEvent = null }) {
                 name="date"
                 value={formData.date}
                 onChange={handleChange}
-                className={s['event-form-input']}
+                className="event-form-input"
                 required
               />
             </div>
 
-            <div className={s['event-form-field']}>
-              <label htmlFor="time" className={s['event-form-label']}>
+            <div className="event-form-field">
+              <label htmlFor="time" className="event-form-label">
                 Time *
               </label>
               <input
@@ -151,14 +151,14 @@ export default function EventForm({ onClose, initialEvent = null }) {
                 name="time"
                 value={formData.time}
                 onChange={handleChange}
-                className={s['event-form-input']}
+                className="event-form-input"
                 required
               />
             </div>
           </div>
 
-          <div className={s['event-form-field']}>
-            <label htmlFor="info" className={s['event-form-label']}>
+          <div className="event-form-field">
+            <label htmlFor="info" className="event-form-label">
               Additional Information
             </label>
             <textarea
@@ -166,22 +166,22 @@ export default function EventForm({ onClose, initialEvent = null }) {
               name="info"
               value={formData.info}
               onChange={handleChange}
-              className={s['event-form-textarea']}
+              className="event-form-textarea"
               rows="4"
               placeholder="Add any additional details about the event..."
             />
           </div>
 
-          <div className={s['event-form-actions']}>
+          <div className="event-form-actions">
             <button
               type="button"
               onClick={onClose}
-              className={s['event-form-cancel']}
+              className="event-form-cancel"
               disabled={isSubmitting}
             >
               Cancel
             </button>
-            <button type="submit" className={s['event-form-submit']} disabled={isSubmitting}>
+            <button type="submit" className="event-form-submit" disabled={isSubmitting}>
               {isSubmitting ? 'Saving...' : initialEvent ? 'Update Event' : 'Create Event'}
             </button>
           </div>

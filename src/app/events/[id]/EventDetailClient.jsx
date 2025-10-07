@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 import useEventsStore from '../../stores/useEventsStore';
 import useUserStore from '../../stores/useUserStore';
 import Pagination from '../../../components/Pagination';
-import s from './EventDetailClient.module.css';
+import '../../../styles/EventDetailClient.css';
 
 export default function EventDetailClient({ eventId }) {
   // *** VARIABLES ***
@@ -144,7 +144,7 @@ export default function EventDetailClient({ eventId }) {
 
   if (isLoading) {
     return (
-      <div className={s['event-detail-loading']}>
+      <div className="event-detail-loading">
         <p>Loading event...</p>
       </div>
     );
@@ -162,86 +162,82 @@ export default function EventDetailClient({ eventId }) {
   });
 
   return (
-    <div className={s['event-detail']}>
-      <div className={s['event-detail-container']}>
-        <div className={s['event-detail-header']}>
+    <div className="event-detail">
+      <div className="event-detail-container">
+        <div className="event-detail-header">
           <h1>{event.name}</h1>
           {user?.isAdmin && (
-            <button onClick={handleDelete} className={s['event-detail-delete']}>
+            <button onClick={handleDelete} className="event-detail-delete">
               Delete Event
             </button>
           )}
         </div>
 
-        <div className={s['event-detail-meta']}>
-          <div className={s['event-detail-meta-item']}>
-            <span className={s['event-detail-meta-label']}>📅 Date</span>
-            <span className={s['event-detail-meta-value']}>{formattedDate}</span>
+        <div className="event-detail-meta">
+          <div className="event-detail-meta-item">
+            <span className="event-detail-meta-label">📅 Date</span>
+            <span className="event-detail-meta-value">{formattedDate}</span>
           </div>
-          <div className={s['event-detail-meta-item']}>
-            <span className={s['event-detail-meta-label']}>🕐 Time</span>
-            <span className={s['event-detail-meta-value']}>{event.time}</span>
+          <div className="event-detail-meta-item">
+            <span className="event-detail-meta-label">🕐 Time</span>
+            <span className="event-detail-meta-value">{event.time}</span>
           </div>
-          <div className={s['event-detail-meta-item']}>
-            <span className={s['event-detail-meta-label']}>📍 Location</span>
-            <span className={s['event-detail-meta-value']}>{event.location}</span>
+          <div className="event-detail-meta-item">
+            <span className="event-detail-meta-label">📍 Location</span>
+            <span className="event-detail-meta-value">{event.location}</span>
           </div>
         </div>
 
         {event.info && (
-          <div className={s['event-detail-info']}>
+          <div className="event-detail-info">
             <h2>Event Information</h2>
             <p>{event.info}</p>
           </div>
         )}
 
-        <div className={s['event-detail-participants']}>
+        <div className="event-detail-participants">
           <h2>Participants</h2>
 
           {!isParticipating && (
-            <div className={s['event-detail-participate']}>
+            <div className="event-detail-participate">
               <input
                 type="text"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 placeholder="Add a comment (optional)"
-                className={s['event-detail-comment-input']}
+                className="event-detail-comment-input"
               />
-              <button onClick={handleParticipate} className={s['event-detail-participate-btn']}>
+              <button onClick={handleParticipate} className="event-detail-participate-btn">
                 Participate
               </button>
             </div>
           )}
 
           {isParticipating && (
-            <div className={s['event-detail-participate']}>
+            <div className="event-detail-participate">
               <input
                 type="text"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 placeholder="Add a comment (optional)"
-                className={s['event-detail-comment-input']}
+                className="event-detail-comment-input"
               />
-              <button onClick={handleUpdateComment} className={s['event-detail-update-btn']}>
+              <button onClick={handleUpdateComment} className="event-detail-update-btn">
                 Update Comment
               </button>
-              <button onClick={handleRemoveParticipation} className={s['event-detail-remove-btn']}>
+              <button onClick={handleRemoveParticipation} className="event-detail-remove-btn">
                 Remove Participation
               </button>
             </div>
           )}
 
-          <div className={s['event-detail-participants-list']}>
+          <div className="event-detail-participants-list">
             {event.participants && event.participants.length > 0 ? (
               event.participants.map((participant, index) => (
-                <div key={index} className={s['event-detail-participant']}>
-                  <div className={s['event-detail-participant-name']}>
-                    {participant.displayName}
-                  </div>
+                <div key={index} className="event-detail-participant">
+                  <div className="event-detail-participant-name">{participant.displayName}</div>
                   {participant.comment && (
-                    <div className={s['event-detail-participant-comment']}>
-                      {participant.comment}
-                    </div>
+                    <div className="event-detail-participant-comment">{participant.comment}</div>
                   )}
                 </div>
               ))

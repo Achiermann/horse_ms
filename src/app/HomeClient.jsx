@@ -7,7 +7,7 @@ import EventList from '../components/EventList';
 import SearchBar from '../components/SearchBar';
 import Filters from '../components/Filters';
 import EventForm from '../components/EventForm';
-import s from './HomeClient.module.css';
+import '../styles/HomeClient.css';
 
 export default function HomeClient() {
   // *** VARIABLES ***
@@ -29,18 +29,18 @@ export default function HomeClient() {
   };
 
   return (
-    <div className={s['home']}>
-      <div className={s['home-container']}>
-        <div className={s['home-header']}>
+    <div className="home">
+      <div className="home-container">
+        <div className="home-header">
           <h1>Horse Events</h1>
           {user?.isAdmin && (
-            <button onClick={handleAddEvent} className={s['home-add-btn']}>
+            <button onClick={handleAddEvent} className="home-add-btn">
               + Add Event
             </button>
           )}
         </div>
 
-        <div className={s['home-controls']}>
+        <div className="home-controls">
           <SearchBar />
           <Filters />
         </div>

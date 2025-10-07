@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import useUserStore from '../app/stores/useUserStore';
-import s from './LoginForm.module.css';
+import '../styles/LoginForm.css';
 
 export default function LoginForm() {
   // *** VARIABLES ***
@@ -48,14 +48,14 @@ export default function LoginForm() {
   };
 
   return (
-    <div className={s['login-form-overlay']}>
-      <div className={s['login-form']}>
-        <h2 className={s['login-form-title']}>Welcome to Horse-MS</h2>
-        <p className={s['login-form-subtitle']}>Please sign in to continue</p>
+    <div className="login-form-overlay">
+      <div className="login-form">
+        <h2 className="login-form-title">Welcome to Horse-MS</h2>
+        <p className="login-form-subtitle">Please sign in to continue</p>
 
-        <form onSubmit={handleSubmit} className={s['login-form-body']}>
-          <div className={s['login-form-field']}>
-            <label htmlFor="email" className={s['login-form-label']}>
+        <form onSubmit={handleSubmit} className="login-form-body">
+          <div className="login-form-field">
+            <label htmlFor="email" className="login-form-label">
               Email
             </label>
             <input
@@ -63,14 +63,14 @@ export default function LoginForm() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={s['login-form-input']}
+              className="login-form-input"
               required
               autoFocus
             />
           </div>
 
-          <div className={s['login-form-field']}>
-            <label htmlFor="password" className={s['login-form-label']}>
+          <div className="login-form-field">
+            <label htmlFor="password" className="login-form-label">
               Password
             </label>
             <input
@@ -78,25 +78,25 @@ export default function LoginForm() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={s['login-form-input']}
+              className="login-form-input"
               required
             />
           </div>
 
-          <div className={s['login-form-checkbox']}>
+          <div className="login-form-checkbox">
             <input
               type="checkbox"
               id="rememberMe"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className={s['login-form-checkbox-input']}
+              className="login-form-checkbox-input"
             />
-            <label htmlFor="rememberMe" className={s['login-form-checkbox-label']}>
+            <label htmlFor="rememberMe" className="login-form-checkbox-label">
               Remember me
             </label>
           </div>
 
-          <button type="submit" className={s['login-form-submit']} disabled={isSubmitting}>
+          <button type="submit" className="login-form-submit" disabled={isSubmitting}>
             {isSubmitting ? 'Signing in...' : 'Sign In'}
           </button>
         </form>

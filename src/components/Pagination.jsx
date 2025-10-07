@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import useEventsStore from '../app/stores/useEventsStore';
-import s from './Pagination.module.css';
+import '../styles/Pagination.css';
 
 export default function Pagination({ currentId }) {
   // *** VARIABLES ***
@@ -10,15 +10,15 @@ export default function Pagination({ currentId }) {
   const { prev, next } = findPrevNext(currentId);
 
   return (
-    <div className={s['pagination']}>
+    <div className="pagination">
       {prev && (
-        <Link href={`/events/${prev}`} className={s['pagination-btn']}>
+        <Link href={`/events/${prev}`} className="pagination-btn">
           ← Previous Event
         </Link>
       )}
-      {prev && <div className={s['pagination-spacer']} />}
+      {prev && <div className="pagination-spacer" />}
       {next && (
-        <Link href={`/events/${next}`} className={s['pagination-btn']}>
+        <Link href={`/events/${next}`} className="pagination-btn">
           Next Event →
         </Link>
       )}

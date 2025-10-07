@@ -1,7 +1,7 @@
 'use client';
 
 import useEventsStore from '../app/stores/useEventsStore';
-import s from './Filters.module.css';
+import '../styles/Filters.css';
 
 export default function Filters() {
   // *** VARIABLES ***
@@ -29,10 +29,10 @@ export default function Filters() {
   const hasActiveFilters = filters.startDate || filters.endDate;
 
   return (
-    <div className={s['filters']}>
-      <div className={s['filters-inputs']}>
-        <div className={s['filters-field']}>
-          <label htmlFor="start-date" className={s['filters-label']}>
+    <div className="filters">
+      <div className="filters-inputs">
+        <div className="filters-field">
+          <label htmlFor="start-date" className="filters-label">
             From
           </label>
           <input
@@ -40,12 +40,12 @@ export default function Filters() {
             id="start-date"
             value={filters.startDate || ''}
             onChange={handleStartDateChange}
-            className={s['filters-input']}
+            className="filters-input"
           />
         </div>
 
-        <div className={s['filters-field']}>
-          <label htmlFor="end-date" className={s['filters-label']}>
+        <div className="filters-field">
+          <label htmlFor="end-date" className="filters-label">
             To
           </label>
           <input
@@ -53,13 +53,13 @@ export default function Filters() {
             id="end-date"
             value={filters.endDate || ''}
             onChange={handleEndDateChange}
-            className={s['filters-input']}
+            className="filters-input"
           />
         </div>
       </div>
 
       {hasActiveFilters && (
-        <button onClick={handleClearFilters} className={s['filters-clear']}>
+        <button onClick={handleClearFilters} className="filters-clear">
           Clear filters
         </button>
       )}

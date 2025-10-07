@@ -60,6 +60,7 @@ The tables already exist in Supabase.
 - `info text`
 - `participants text[] not null default '{}'`
 - `created_at timestamptz default now()`
+
   ```
 
   ```
