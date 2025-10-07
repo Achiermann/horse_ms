@@ -50,7 +50,9 @@ export async function POST(request) {
       id: authData.user.id,
       display_name: displayName,
       email: email,
-      isAdmin: false, // Default to non-admin
+      locale: 'en',
+      timezone: 'UTC',
+      isAdmin: false,
     });
 
     if (profileError) {
@@ -82,8 +84,9 @@ export async function POST(request) {
       },
     });
   } catch (error) {
+    console.error('Signup error:', error);
     return NextResponse.json(
-      { error: { code: 'SERVER_ERROR', message: 'Internal server error' } },
+      { error: { code: 'SERVER_ERROR', message: error.message || 'Internal server error' } },
       { status: 500 }
     );
   }
