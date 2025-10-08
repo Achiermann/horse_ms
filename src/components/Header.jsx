@@ -4,12 +4,13 @@ import Link from 'next/link';
 import useUserStore from '../app/stores/useUserStore';
 import '../styles/Header.css';
 
+// Top navigation bar that displays the logo, user info (with admin badge if applicable), and logout button.
 export default function Header() {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const user = useUserStore((state) => state.user);
   const logout = useUserStore((state) => state.logout);
 
-  // *** FUNCTIONS/HANDLERS ***
+  // .2 *** FUNCTIONS/HANDLERS ***
   const handleLogout = async () => {
     await logout();
   };

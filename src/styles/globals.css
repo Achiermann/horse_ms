@@ -1,29 +1,32 @@
 /* Design tokens - inspired by Claude.ai minimal aesthetic */
 :root {
-  /* Colors */
-  --color-bg: #ffffff;
-  --color-surface: #f9f9f9;
-  --color-border: #e5e5e5;
-  --color-text: #1a1a1a;
-  --color-text-muted: #666666;
-  --color-text-subtle: #999999;
-  --color-brand: #d97706;
-  --color-brand-hover: #b45309;
-  --color-brand-light: #fef3c7;
+  /* Colors - Claude.ai warm beige/cream palette */
+  --color-bg: #f7f5f2;
+  --color-surface: #ffffff;
+  --color-surface-hover: #fafaf9;
+  --color-border: #e7e5e0;
+  --color-border-strong: #d4d1cc;
+  --color-text: #2b2928;
+  --color-text-muted: #6b6865;
+  --color-text-subtle: #9a9895;
+  --color-brand: #cc785c;
+  --color-brand-hover: #b66750;
+  --color-brand-light: #fef5f1;
   --color-danger: #dc2626;
   --color-danger-hover: #b91c1c;
   --color-success: #16a34a;
   --color-success-light: #dcfce7;
 
-  /* Radii */
-  --radius-sm: 4px;
-  --radius: 8px;
-  --radius-lg: 12px;
+  /* Radii - softer, more rounded */
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Shadows - softer, more subtle */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.08);
 
   /* Spacing */
   --space-1: 4px;
@@ -33,27 +36,31 @@
   --space-5: 24px;
   --space-6: 32px;
   --space-7: 48px;
+  --space-8: 64px;
 
-  /* Typography */
+  /* Typography - Claude uses Charter/similar serif for headings */
   --font-sans:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-    sans-serif;
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
+  --font-serif: 'Charter', 'Bitstream Charter', 'Georgia', 'Cambria', serif;
   --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', monospace;
 
   /* Transitions */
-  --transition-fast: 150ms ease-in-out;
-  --transition-normal: 250ms ease-in-out;
+  --transition-fast: 120ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Dark mode support (optional) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #1a1a1a;
-    --color-surface: #262626;
-    --color-border: #404040;
-    --color-text: #fafafa;
-    --color-text-muted: #a3a3a3;
-    --color-text-subtle: #737373;
+    --color-bg: #1c1917;
+    --color-surface: #292524;
+    --color-surface-hover: #322f2c;
+    --color-border: #44403c;
+    --color-border-strong: #57534e;
+    --color-text: #fafaf9;
+    --color-text-muted: #a8a29e;
+    --color-text-subtle: #78716c;
+    --color-brand-light: #442e27;
   }
 }
 
@@ -70,6 +77,8 @@ html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
@@ -78,6 +87,13 @@ body {
   background-color: var(--color-bg);
   line-height: 1.5;
   min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-image: url('/20251008_1214_Horse Jumping App Logo_simple_compose_01k71n029kfhavmwnjgsx9xtd3.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: bottom left;
+  background-size: 400px;
 }
 
 /* Typography */
@@ -87,22 +103,24 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 600;
+  font-family: var(--font-serif);
+  font-weight: 500;
   line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 2.25rem;
   margin-bottom: var(--space-4);
 }
 
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   margin-bottom: var(--space-3);
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.375rem;
   margin-bottom: var(--space-3);
 }
 
@@ -138,12 +156,19 @@ input[type='time'],
 textarea,
 select {
   width: 100%;
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-3);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius);
-  background-color: var(--color-bg);
+  background-color: var(--color-surface);
   color: var(--color-text);
-  transition: border-color var(--transition-fast);
+  transition: all var(--transition-fast);
+  font-size: 0.9375rem;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: var(--color-border-strong);
 }
 
 input:focus,
@@ -152,6 +177,7 @@ select:focus {
   outline: none;
   border-color: var(--color-brand);
   box-shadow: 0 0 0 3px var(--color-brand-light);
+  background-color: var(--color-surface);
 }
 
 textarea {
@@ -164,9 +190,11 @@ button {
   cursor: pointer;
   border: none;
   border-radius: var(--radius);
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-3) var(--space-4);
   font-weight: 500;
+  font-size: 0.9375rem;
   transition: all var(--transition-fast);
+  letter-spacing: -0.01em;
 }
 
 button:focus-visible {
@@ -175,7 +203,7 @@ button:focus-visible {
 }
 
 button:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
@@ -183,20 +211,26 @@ button:disabled {
 .btn-primary {
   background-color: var(--color-brand);
   color: white;
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-primary:hover:not(:disabled) {
   background-color: var(--color-brand-hover);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
   background-color: var(--color-surface);
   color: var(--color-text);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: var(--color-border);
+  background-color: var(--color-surface-hover);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow);
 }
 
 .btn-danger {
@@ -236,11 +270,17 @@ button:disabled {
 }
 
 .card {
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-lg);
-  padding: var(--space-4);
-  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+  box-shadow: var(--shadow);
+  transition: all var(--transition-fast);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-border-strong);
 }
 
 .divider {

@@ -2,14 +2,17 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import useEventsStore from '../../stores/useEventsStore';
 import useUserStore from '../../stores/useUserStore';
 import Pagination from '../../../components/Pagination';
 import '../../../styles/EventDetailClient.css';
 
+// Event detail page with participation management. Allows users to join/leave events with optional comments.
+// Admins can delete events. Fetches event data on mount and syncs with store.
 export default function EventDetailClient({ eventId }) {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const router = useRouter();
   const user = useUserStore((state) => state.user);
   const events = useEventsStore((state) => state.events);
@@ -20,7 +23,8 @@ export default function EventDetailClient({ eventId }) {
   const [isParticipating, setIsParticipating] = useState(false);
   const [comment, setComment] = useState('');
 
-  // *** FUNCTIONS/HANDLERS ***
+  // .2 *** FUNCTIONS/HANDLERS ***
+  // Fetches event details, checks participation status, and syncs to store
   useEffect(() => {
     const fetchEvent = async () => {
       try {
@@ -52,6 +56,7 @@ export default function EventDetailClient({ eventId }) {
     fetchEvent();
   }, [eventId, user?.id, router, updateEvent]);
 
+  // Adds current user as a participant with optional comment
   const handleParticipate = async () => {
     try {
       const response = await fetch(`/api/events/${eventId}/participants`, {
@@ -120,6 +125,7 @@ export default function EventDetailClient({ eventId }) {
     }
   };
 
+  // Admin-only: deletes the event after confirmation
   const handleDelete = async () => {
     if (!confirm('Are you sure you want to delete this event?')) {
       return;
@@ -161,9 +167,29 @@ export default function EventDetailClient({ eventId }) {
     day: 'numeric',
   });
 
+  const findPrevNext = useEventsStore((state) => state.findPrevNext);
+  const { prev, next } = findPrevNext(eventId);
+
   return (
     <div className="event-detail">
       <div className="event-detail-container">
+        <div className="event-detail-nav">
+          <Link href="/" className="event-detail-back">
+            Go back
+          </Link>
+          <div className="event-detail-nav-buttons">
+            {prev && (
+              <Link href={`/events/${prev}`} className="event-detail-nav-btn">
+                ← Previous Event
+              </Link>
+            )}
+            {next && (
+              <Link href={`/events/${next}`} className="event-detail-nav-btn">
+                Next Event →
+              </Link>
+            )}
+          </div>
+        </div>
         <div className="event-detail-header">
           <h1>{event.name}</h1>
           {user?.isAdmin && (

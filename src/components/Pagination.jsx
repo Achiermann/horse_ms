@@ -4,8 +4,9 @@ import Link from 'next/link';
 import useEventsStore from '../app/stores/useEventsStore';
 import '../styles/Pagination.css';
 
+// Displays prev/next navigation links for event detail pages based on sorted event order.
 export default function Pagination({ currentId }) {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const findPrevNext = useEventsStore((state) => state.findPrevNext);
   const { prev, next } = findPrevNext(currentId);
 

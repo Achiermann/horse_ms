@@ -12,27 +12,31 @@
 }
 
 .login-form {
-  background-color: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
-  padding: var(--space-6);
+  padding: var(--space-7);
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   margin: var(--space-4);
 }
 
 .login-form-title {
-  font-size: 1.75rem;
-  font-weight: 600;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 500;
   margin-bottom: var(--space-2);
   text-align: center;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
 }
 
 .login-form-subtitle {
   color: var(--color-text-muted);
   text-align: center;
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-6);
+  font-size: 0.9375rem;
 }
 
 .login-form-body {
@@ -51,22 +55,28 @@
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--color-text);
+  letter-spacing: -0.01em;
 }
 
 .login-form-input {
   padding: var(--space-3);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius);
-  font-size: 1rem;
-  background-color: var(--color-bg);
+  font-size: 0.9375rem;
+  background-color: var(--color-surface);
   color: var(--color-text);
-  transition: border-color var(--transition-fast);
+  transition: all var(--transition-fast);
+}
+
+.login-form-input:hover {
+  border-color: var(--color-border-strong);
 }
 
 .login-form-input:focus {
   outline: none;
   border-color: var(--color-brand);
   box-shadow: 0 0 0 3px var(--color-brand-light);
+  background-color: var(--color-surface);
 }
 
 .login-form-checkbox {
@@ -93,19 +103,23 @@
   color: white;
   border: none;
   border-radius: var(--radius);
-  font-size: 1rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   cursor: pointer;
   transition: all var(--transition-fast);
   margin-top: var(--space-3);
+  letter-spacing: -0.01em;
+  box-shadow: var(--shadow-sm);
 }
 
 .login-form-submit:hover:not(:disabled) {
   background-color: var(--color-brand-hover);
+  box-shadow: var(--shadow);
+  transform: translateY(-1px);
 }
 
 .login-form-submit:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
@@ -123,10 +137,10 @@
   font-size: 0.875rem;
   cursor: pointer;
   padding: var(--space-2);
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
+  letter-spacing: -0.01em;
 }
 
 .login-form-toggle-btn:hover {
   color: var(--color-brand-hover);
-  text-decoration: underline;
 }

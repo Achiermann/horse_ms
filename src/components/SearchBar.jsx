@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react';
 import useEventsStore from '../app/stores/useEventsStore';
 import '../styles/SearchBar.css';
 
+// Search input with 250ms debounce that filters events by name or location.
+// Uses local state to prevent unnecessary re-renders and API calls.
 export default function SearchBar() {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const search = useEventsStore((state) => state.search);
   const setSearch = useEventsStore((state) => state.setSearch);
   const fetchEvents = useEventsStore((state) => state.fetchEvents);
   const [localSearch, setLocalSearch] = useState(search);
 
-  // *** FUNCTIONS/HANDLERS ***
+  // .2 *** FUNCTIONS/HANDLERS ***
+  // Debounced search: waits 250ms after typing stops before triggering fetch
   useEffect(() => {
     const timer = setTimeout(() => {
       setSearch(localSearch);

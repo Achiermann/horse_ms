@@ -2,10 +2,11 @@
 
 import useUserStore from '../app/stores/useUserStore';
 import LoginForm from './LoginForm';
-import '../styles/AuthGate.css';
+import '../styles/AuthGate.module.css';
 
+// Wrapper that blocks rendering of children until the user is authenticated. Shows LoginForm if no user.
 export default function AuthGate({ children }) {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const user = useUserStore((state) => state.user);
   const isLoading = useUserStore((state) => state.isLoading);
 

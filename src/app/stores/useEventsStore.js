@@ -2,8 +2,9 @@
 
 import { create } from 'zustand';
 
+// Zustand store for events. Manages event list, search, date filters, and provides sorting/pagination helpers.
 const useEventsStore = create((set, get) => ({
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   events: [],
   search: '',
   filters: {
@@ -13,7 +14,7 @@ const useEventsStore = create((set, get) => ({
   isLoading: false,
   error: null,
 
-  // *** FUNCTIONS/HANDLERS ***
+  // .2 *** FUNCTIONS/HANDLERS ***
   setEvents: (events) => set({ events }),
 
   addEvent: (event) =>
@@ -42,6 +43,7 @@ const useEventsStore = create((set, get) => ({
 
   setError: (error) => set({ error }),
 
+  // Returns events filtered by search and date range, sorted by date/time/name
   getSortedEvents: () => {
     const { events, search, filters } = get();
 
@@ -87,20 +89,23 @@ const useEventsStore = create((set, get) => ({
       .map((evt) => evt.id);
   },
 
+  // Given an event ID, returns the prev/next IDs in sorted order (for pagination)
+  // Wraps around: if at first event, prev goes to last; if at last event, next goes to first
   findPrevNext: (id) => {
     const sortedIds = get().getSortedIds();
     const currentIndex = sortedIds.indexOf(id);
 
-    if (currentIndex === -1) {
+    if (currentIndex === -1 || sortedIds.length === 0) {
       return { prev: null, next: null };
     }
 
     return {
-      prev: currentIndex > 0 ? sortedIds[currentIndex - 1] : null,
-      next: currentIndex < sortedIds.length - 1 ? sortedIds[currentIndex + 1] : null,
+      prev: currentIndex > 0 ? sortedIds[currentIndex - 1] : sortedIds[sortedIds.length - 1],
+      next: currentIndex < sortedIds.length - 1 ? sortedIds[currentIndex + 1] : sortedIds[0],
     };
   },
 
+  // Fetches events from API with current search and filter params
   fetchEvents: async () => {
     const { search, filters } = get();
     set({ isLoading: true, error: null });

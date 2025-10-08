@@ -3,14 +3,15 @@
 import useEventsStore from '../app/stores/useEventsStore';
 import '../styles/Filters.css';
 
+// Date range filter (startDate/endDate) for events. Updates store and triggers immediate fetch on change.
 export default function Filters() {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const filters = useEventsStore((state) => state.filters);
   const setFilters = useEventsStore((state) => state.setFilters);
   const clearFilters = useEventsStore((state) => state.clearFilters);
   const fetchEvents = useEventsStore((state) => state.fetchEvents);
 
-  // *** FUNCTIONS/HANDLERS ***
+  // .2 *** FUNCTIONS/HANDLERS ***
   const handleStartDateChange = (e) => {
     setFilters({ startDate: e.target.value || null });
     fetchEvents();

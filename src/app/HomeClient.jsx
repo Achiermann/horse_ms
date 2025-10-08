@@ -7,15 +7,18 @@ import EventList from '../components/EventList';
 import SearchBar from '../components/SearchBar';
 import Filters from '../components/Filters';
 import EventForm from '../components/EventForm';
-import '../styles/HomeClient.css';
+import s from '../styles/HomeClient.css';
 
+// Main home page client component that displays the event list with search, filters, and an add button for admins.
+// Hydrates events on mount and controls the EventForm modal visibility.
 export default function HomeClient() {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const fetchEvents = useEventsStore((state) => state.fetchEvents);
   const user = useUserStore((state) => state.user);
   const [showEventForm, setShowEventForm] = useState(false);
 
-  // *** FUNCTIONS/HANDLERS ***
+  // .2 *** FUNCTIONS/HANDLERS ***
+  // Fetch events on component mount
   useEffect(() => {
     fetchEvents();
   }, [fetchEvents]);
@@ -33,9 +36,11 @@ export default function HomeClient() {
       <div className="home-container">
         <div className="home-header">
           <h1>Horse Events</h1>
+
           {user?.isAdmin && (
-            <button onClick={handleAddEvent} className="home-add-btn">
-              + Add Event
+            <button onClick={handleAddEvent} className="home-new-event-btn">
+              <span className="home-new-event-icon">+</span>
+              <span className="home-new-event-text">New event</span>
             </button>
           )}
         </div>

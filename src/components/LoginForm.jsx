@@ -5,8 +5,10 @@ import { toast } from 'react-hot-toast';
 import useUserStore from '../app/stores/useUserStore';
 import '../styles/LoginForm.css';
 
+// Auth form that toggles between login and signup modes.
+// Validates inputs, calls the appropriate API endpoint, and hydrates the user store on success.
 export default function LoginForm() {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const fetchUser = useUserStore((state) => state.fetchUser);
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState('');
@@ -15,7 +17,8 @@ export default function LoginForm() {
   const [rememberMe, setRememberMe] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // *** FUNCTIONS/HANDLERS ***
+  // .2 *** FUNCTIONS/HANDLERS ***
+  // Handles both login and signup based on isSignup state, validates inputs, and updates user store
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -108,6 +111,7 @@ export default function LoginForm() {
               className="login-form-input"
               required
               autoFocus={!isSignup}
+              suppressHydrationWarning
             />
           </div>
 
@@ -123,6 +127,7 @@ export default function LoginForm() {
               className="login-form-input"
               required
               minLength={6}
+              suppressHydrationWarning
             />
           </div>
 

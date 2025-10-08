@@ -2,19 +2,21 @@
 
 import { create } from 'zustand';
 
+// Zustand store for user authentication state. Manages user data, login/logout, and fetching current user from the API.
 const useUserStore = create((set) => ({
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   user: null,
   isLoading: false,
   error: null,
 
-  // *** FUNCTIONS/HANDLERS ***
+  // .2 *** FUNCTIONS/HANDLERS ***
   setUser: (user) => set({ user }),
 
   setLoading: (isLoading) => set({ isLoading }),
 
   setError: (error) => set({ error }),
 
+  // Fetches the current user from /api/users/me; handles 401 gracefully
   fetchUser: async () => {
     set({ isLoading: true, error: null });
 
@@ -36,6 +38,7 @@ const useUserStore = create((set) => ({
     }
   },
 
+  // Calls logout API and clears user state
   logout: async () => {
     try {
       await fetch('/api/users/logout', { method: 'POST' });

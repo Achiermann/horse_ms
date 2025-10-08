@@ -4,11 +4,13 @@ import { Toaster } from 'react-hot-toast';
 import { useEffect } from 'react';
 import useUserStore from './stores/useUserStore';
 
+// Wraps the app in a client component to mount the Toaster and fetch the current user on mount.
 export default function ClientWrapper({ children }) {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const fetchUser = useUserStore((state) => state.fetchUser);
 
-  // *** FUNCTIONS/HANDLERS ***
+  // .2 *** FUNCTIONS/HANDLERS ***
+  // Hydrates user state on mount
   useEffect(() => {
     fetchUser();
   }, [fetchUser]);
@@ -16,7 +18,7 @@ export default function ClientWrapper({ children }) {
   return (
     <>
       <Toaster
-        position="top-right"
+        position="top-center"
         toastOptions={{
           duration: 4000,
           style: {

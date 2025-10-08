@@ -4,8 +4,9 @@ import useEventsStore from '../app/stores/useEventsStore';
 import EventListItem from './EventListItem';
 import '../styles/EventList.css';
 
+// Displays the list of events in sorted order (by date/time). Shows loading, empty, or list states.
 export default function EventList() {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const getSortedEvents = useEventsStore((state) => state.getSortedEvents);
   const isLoading = useEventsStore((state) => state.isLoading);
   const events = getSortedEvents();

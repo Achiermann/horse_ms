@@ -5,8 +5,10 @@ import { toast } from 'react-hot-toast';
 import useEventsStore from '../app/stores/useEventsStore';
 import '../styles/EventForm.css';
 
+// Modal form for creating or editing events. Validates required fields, submits to API, and updates the store.
+// If initialEvent is provided, it works in edit mode; otherwise, it creates a new event.
 export default function EventForm({ onClose, initialEvent = null }) {
-  // *** VARIABLES ***
+  // .1 *** VARIABLES ***
   const addEvent = useEventsStore((state) => state.addEvent);
   const updateEvent = useEventsStore((state) => state.updateEvent);
   const [formData, setFormData] = useState({
@@ -18,12 +20,13 @@ export default function EventForm({ onClose, initialEvent = null }) {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // *** FUNCTIONS/HANDLERS ***
+  // .2 *** FUNCTIONS/HANDLERS ***
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Validates, submits to API (POST for create, PATCH for edit), and updates store
   const handleSubmit = async (e) => {
     e.preventDefault();
 

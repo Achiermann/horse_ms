@@ -16,8 +16,8 @@ Only the **adapter** is Supabase-specific. Everything else stays generic.
 
 ## Env Vars (server only)
 
-- `NEXT_PUBLIC_SUPABASE_URL` (safe to expose)
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` (safe to expose for client auth)
+- `SUPABASE_URL` (safe to expose)
+- `SUPABASE_ANON_KEY` (safe to expose for client auth)
 - `SUPABASE_SERVICE_ROLE_KEY` (**server only**; never ship to client)
 
 ---

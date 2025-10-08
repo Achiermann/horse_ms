@@ -3,15 +3,8 @@
 import Link from 'next/link';
 import '../styles/EventListItem.css';
 
+// Displays a single event as a clickable card with date badge, name, location, time, and participant count.
 export default function EventListItem({ event }) {
-  // *** VARIABLES ***
-  const formattedDate = new Date(event.date).toLocaleDateString('en-US', {
-    weekday: 'short',
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  });
-
   return (
     <Link href={`/events/${event.id}`} className="event-list-item">
       <div className="event-list-item-date">
